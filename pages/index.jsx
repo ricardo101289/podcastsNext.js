@@ -6,6 +6,7 @@ import Error from './_error'
 export default class extends React.Component {
 
     static async getInitialProps(res){
+        console.log("datosssssss");
         try {
             let req = await fetch('https://api.audioboom.com/channels/recommended?api_version=2');
             let {body: channels} = await req.json();
@@ -17,7 +18,7 @@ export default class extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log("RENDERRRRRRRRR");
         
         const {channels, statusCode} = this.props;
         if (statusCode !== 200) {

@@ -1,5 +1,16 @@
 import Link from "next/link";
 import Head from "next/head";
+import NProgress from 'nprogress';
+import Router from 'next/router'
+
+Router.onRouteChangeStart = (url) => {
+  NProgress.start()
+}
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
+
+
+
 export default class Layout extends React.Component {
   render() {
     const { children, title } = this.props;
@@ -8,7 +19,7 @@ export default class Layout extends React.Component {
         <Head>
           <title>{title}</title>
         </Head>
-        <header>
+        <header className="header">
           <Link href="">
             <a>Podcasts</a>
           </Link>
