@@ -5,28 +5,27 @@ import Error from './_error'
 
 export default class extends React.Component {
 
-    static async getInitialProps(res){
-        console.log("datosssssss");
+    static async getInitialProps(res) {
         try {
-            let req = await fetch('https://api.audioboom.com/channels/recommended?api_version=2');
-            let {body: channels} = await req.json();
-            return {channels, statusCode:200}
+            let requesBrands = await fetch('https://ecuador.patiotuerca.com/ptx/api/v1/featured-brands');
+            let vehicles = await requesBrands.json();
+            return { statusCode: 200, vehicles: vehicles.data }
         } catch (error) {
+            console.log(error);
             res.statusCode = 503
-            return {channels: null, statusCode:503}
+            return { channels: null, statusCode: 503 }
         }
     }
 
     render() {
-        console.log("RENDERRRRRRRRR");
-        
-        const {channels, statusCode} = this.props;
+        const { statusCode, vehicles } = this.props;
+        // console.log("codigo de estado: ", vehicles);
         if (statusCode !== 200) {
-            return <Error statusCode = {statusCode}/>
+            return <Error statusCode={statusCode} />
         }
         return (
-            <Layout title ="App de podcasts">
-                <ChannelGrid channels={channels}></ChannelGrid>
+            <Layout title="App de podcasts">
+                <ChannelGrid vehicles={vehicles}></ChannelGrid>
             </Layout>
         );
     }

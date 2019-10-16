@@ -6,7 +6,6 @@ export default class extends React.Component {
   render() {
     return <div>
       <header>Podcasts</header>
-
       <div className='modal'>
         <div className='clip'>
           <nav>
@@ -14,12 +13,10 @@ export default class extends React.Component {
               <a className='close'>&lt; Volver</a>
             </Link>
           </nav>
-
           <picture>
             {/* Hint: Puede estar en clip.urls.image o en clip.channel.urls.logo_image.original */}
             <div style={{ backgroundImage: `url(${"SOURCE DE LA IMAGEN"})` }} />
           </picture>
-
           <div className='player'>
             <h3>TITLE DEL CLIP</h3>
             <h6>NOMBRE DEL CANAL</h6>

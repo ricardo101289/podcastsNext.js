@@ -21,7 +21,7 @@ export default class Layout extends React.Component {
         </Head>
         <header className="header">
           <Link href="">
-            <a>Podcasts</a>
+            <a>SEMINUEVOS</a>
           </Link>
         </header>
         {children}

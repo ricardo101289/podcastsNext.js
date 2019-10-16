@@ -1,10 +1,23 @@
-const routes = require('next-routes')
-
-                                                    // Name   Page      Pattern
-module.exports = routes()                           // ----   ----      -----
-.add('index')                                       // about  about     /about
-.add('channel', '/:slug.:id', 'channel')                         // blog   blog      /blog/:slug
-.add('podcast', '/:slugChannel.:idChannel/:slug.:id', 'channel')                         // blog   blog      /blog/:slug
-// .add('user', '/user/:id', 'profile')                // user   profile   /user/:id
-// .add('/:noname/:lang(en|es)/:wow+', 'complex')      // (none) complex   /:noname/:lang(en|es)/:wow+
-// .add({name: 'beta', pattern: '/v3', page: 'v3'})    // beta   v3        /v3
+const nextRoutes = require('next-routes')
+const routes = module.exports = nextRoutes()
+// routes.add('index')
+// routes.add('usados', '/usados/-/:autos/-/:marca')
+// // routes.add('usados', '/usados/-/autos/:marca/:modelo')
+// // routes.add('blog/detail', '/:language/blog/:slug')
+// // routes.add('index', '/')
+const APP_ROUTES = [
+    {
+      page: 'index',
+      pattern: '/'
+    }, {
+      page: 'usados',
+      pattern: '/usados/-/:autos/-/:marca',
+      shallow: true,
+    },
+    {
+        page: 'usados',
+        pattern: '/usados/-/:autos/-/:marca/:modelo',
+        shallow: true,
+      }
+  ]
+  APP_ROUTES.forEach(route => routes.add(route))

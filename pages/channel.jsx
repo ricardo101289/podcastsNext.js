@@ -15,7 +15,6 @@ export default class extends React.Component {
 
   static async getInitialProps({ query, res }) {
     let idChannel = query.id
-
     try {
       let [reqChannel, reqSeries, reqAudios] = await Promise.all([
         fetch(`https://api.audioboom.com/channels/${idChannel}`),
@@ -65,18 +64,16 @@ export default class extends React.Component {
   render() {
     const { channel, audioClips, series, statusCode } = this.props
     const { openPodcast } = this.state
-
-    if( statusCode !== 200 ) {
-      return <Error statusCode={ statusCode } />
-    }
-
-    return <Layout title={channel.title}>
+    // if( statusCode !== 200 ) {
+    //   return <Error statusCode={ statusCode } />
+    // }
+    return <Layout title="holi :)">
 
       { openPodcast && 
         <PodcastPlayer clip={ openPodcast } onClose={ this.closePodcast } />
       }
 
-      <div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
+      {/* <div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} /> */}
       
       <h1>{ channel.title }</h1>
 

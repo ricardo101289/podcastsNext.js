@@ -1,18 +1,35 @@
 import {Link} from '../routes';
+// import Link from 'next/link'
 import slug from '../helpers/slug';
 
 export default class ChannelGrid extends React.Component {
   render() {
-      const {channels} = this.props;
+    const { vehicles } = this.props;
+    // <Link route='channel' params={{slug:slug(channel.title), id:channel.id}} prefetch></Link>
     return (
       <div className="channels">
-        {channels.map(channel => (
-          <Link route='channel' params={{slug:slug(channel.title), id:channel.id}} prefetch>
-            <a className="channel">
-              <img src={channel.urls.logo_image.original} alt="" />
-              <h2>{channel.title}</h2>
-            </a>
-          </Link>
+        {vehicles.map((vehicle, i) => (
+          <div key={i}>
+            <div className="channel">
+              <h2>{vehicle.Name}</h2>
+              <Link route={vehicle.Href}  key={i}>
+                <a>
+                  <img src={'https://ecuador.patiotuerca.com/' + vehicle.ImageURL} alt="" />
+                </a>
+              </Link>
+              <div>
+                <p>Modelos:</p>
+                {vehicle.Models.map((model, x) => (
+                  <Link href={model.Href} key={x}>
+                    <a>
+                      <div >{model.Name}</div>
+                    </a>
+                  </Link>
+                ))}
+              </div>
+
+            </div>
+          </div>
         ))}
         <style jsx>{`
             .channels {
